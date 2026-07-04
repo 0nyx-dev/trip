@@ -81,6 +81,15 @@ function setupSearch() {
   document.getElementById('search-type').addEventListener('change', applyFilters);
   document.getElementById('search-date').addEventListener('input', applyFilters);
   applyFilters(); // show initial count
+
+  /* Toggle collapse */
+  var bar = document.getElementById('search-bar');
+  document.getElementById('search-toggle').addEventListener('click', function () {
+    bar.classList.toggle('collapsed');
+  });
+  document.getElementById('search-close').addEventListener('click', function () {
+    bar.classList.add('collapsed');
+  });
 }
 
 function applyFilters() {
