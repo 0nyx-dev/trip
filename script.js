@@ -195,11 +195,14 @@ function createPinIcon(color) {
 
 function openInMapsHtml(lat, lng, name) {
   var encName = encodeURIComponent(String(name || ''));
-  var geoHref = 'geo:' + lat + ',' + lng + '?q=' + lat + ',' + lng + '(' + encName + ')';
+  var isIOS = /iPhone|iPad|iPod/.test(navigator.userAgent);
+  var primaryHref = isIOS
+    ? 'https://maps.apple.com/?q=' + encName + '&ll=' + lat + ',' + lng
+    : 'https://www.google.com/maps/search/?api=1&query=' + lat + ',' + lng;
   var gmapsHref = 'https://www.google.com/maps/search/?api=1&query=' + lat + ',' + lng;
   return '<div class="maps-links">'
-    + '<a href="' + geoHref + '" target="_blank" class="maps-btn primary">📍 Open in Maps</a>'
-    + '<a href="' + gmapsHref + '" target="_blank" class="maps-btn secondary">🗺 Open in Google Maps</a>'
+    + '<a href="' + primaryHref + '" target="_blank" rel="noopener" class="maps-btn primary">📍 Open in Maps</a>'
+    + '<a href="' + gmapsHref + '" target="_blank" rel="noopener" class="maps-btn secondary">🗺 Open in Google Maps</a>'
     + '</div>';
 }
 
