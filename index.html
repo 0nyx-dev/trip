@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Пътуване до Германия 2026</title>
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+    crossorigin=""
+  />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!--
+    Offline note: data.json is bundled locally so all Wikipedia data and
+    location/hotel info loads without internet. Only OSM map tiles
+    themselves require network access.
+    To run: serve via HTTP (e.g. python3 -m http.server 8080) — opening
+    index.html directly as a file won't work due to fetch() restrictions.
+  -->
+  <div id="search-bar">
+    <input type="text" id="search-name" placeholder="Търси по име..." />
+    <select id="search-type">
+      <option value="all">Всички</option>
+      <option value="hotel">Хотели</option>
+      <option value="location">Забележителности</option>
+    </select>
+    <input type="date" id="search-date" />
+    <span id="search-count"></span>
+  </div>
+  <div id="map"></div>
+  <div id="info-note">
+    ⚡ Използвайте <kbd>python3 -m http.server 8080</kbd> и отворете
+    <a href="http://localhost:8080">localhost:8080</a> —
+    отварянето на <code>index.html</code> директно като файл няма да работи.
+  </div>
+  <div id="legend">
+    <span class="legend-item"><span class="dot hotel-dot"></span> Хотели</span>
+    <span class="legend-item"><span class="dot loc-dot"></span> Забележителности</span>
+  </div>
+  <script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+    crossorigin=""
+  ></script>
+  <script src="script.js"></script>
+</body>
+</html>
